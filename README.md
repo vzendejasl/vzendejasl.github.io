@@ -45,7 +45,3 @@ Use `serve.py` rather than `python3 -m http.server`. The built-in server does no
 3. In the repository, open Settings, then Pages. Under Build and deployment, choose Deploy from a branch, select `main` and `/ (root)`, and save.
 4. Wait a minute or two, then open the address shown at the top of the Pages settings.
 5. Check it: the page loads and the animations play.
-
-## Before you publish
-
-The site is public. If any of the content comes from work at Lawrence Livermore National Laboratory (figures, descriptions, code names), follow the laboratory's review and release process first.
