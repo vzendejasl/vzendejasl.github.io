@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Richtmyer–Meshkov instability in 3D · Victor's CFD Notebook</title>
+<meta name="description" content="A three-dimensional Richtmyer–Meshkov instability computed with adaptive mesh refinement in MARBL, shown at three levels of refinement.">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="top">
+    <nav aria-label="Sections">
+      <a href="index.html#about">About</a>
+      <a href="index.html#education">Education</a>
+      <a href="index.html#simulations" aria-current="true">Simulations</a>
+      <a href="index.html#cv">CV</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button class="btn" id="theme" type="button">Dark mode</button>
+  </header>
+
+  <main class="page">
+    <p class="crumb"><a href="index.html#simulations">← All simulations</a></p>
+    <article class="amr3d" id="amr3d" aria-labelledby="h-3d" data-sync-group>
+        <div class="amr3d-head">
+          <p class="label">3D calculation</p>
+          <h1 class="page-title" id="h-3d">Richtmyer–Meshkov instability in 3D, AMR levels 3, 4 and 5</h1>
+          <p>This is a three-dimensional Richtmyer–Meshkov calculation; <a href="richtmyer-meshkov-2d.html#mechanism">the 2D page</a> explains where the instability comes from. The movies are volume renderings of the same 3D calculation at three AMR resolutions. Colors show the heavy gas volume fraction, and orange to red shows the magnitude of the density gradient. Higher levels resolve finer structures in the mixing region. The movie below them is a 2D slice cut from the level 4 calculation. All the movies play together.</p>
+        </div>
+        <div class="sync" role="group" aria-label="Playback for all the movies">
+          <button class="btn sync-btn" id="sync-toggle" type="button" aria-label="Play all the movies" disabled>Play</button>
+          <input class="sync-range" id="sync-range" type="range" min="0" max="1000" step="1" value="0" aria-label="Scrub all the movies" disabled>
+          <span class="sync-time" id="sync-time">0:00 / 0:00</span>
+        </div>
+        <div class="sync-media" id="sync-media">
+        <div class="sync-grid" id="sync-grid">
+          <figure class="sync-tile">
+            <div class="plate"><video muted playsinline preload="auto" poster="assets/amr3d-level3-poster.jpg" aria-label="Volume rendering of the 3D calculation at AMR level 3"><source src="assets/amr3d-level3.mp4" type="video/mp4"><source src="assets/amr3d-level3.webm" type="video/webm"></video></div>
+            <figcaption><h4>AMR level 3</h4><p class="meta">160 × 32 × 32 elements · Q2Q1<br>≈ 3.93 million kinematic DOFs<span class="sync-note"></span></p></figcaption>
+          </figure>
+          <figure class="sync-tile">
+            <div class="plate"><video muted playsinline preload="auto" poster="assets/amr3d-level4-poster.jpg" aria-label="Volume rendering of the 3D calculation at AMR level 4"><source src="assets/amr3d-level4.mp4" type="video/mp4"><source src="assets/amr3d-level4.webm" type="video/webm"></video></div>
+            <figcaption><h4>AMR level 4</h4><p class="meta">320 × 64 × 64 elements · Q2Q1<br>≈ 31.5 million kinematic DOFs<span class="sync-note"></span></p></figcaption>
+          </figure>
+          <figure class="sync-tile">
+            <div class="plate"><video muted playsinline preload="auto" poster="assets/amr3d-level5-poster.jpg" aria-label="Volume rendering of the 3D calculation at AMR level 5"><source src="assets/amr3d-level5.mp4" type="video/mp4"><source src="assets/amr3d-level5.webm" type="video/webm"></video></div>
+            <figcaption><h4>AMR level 5</h4><p class="meta">640 × 128 × 128 elements · Q2Q1<br>≈ 252 million kinematic DOFs<span class="sync-note"></span></p></figcaption>
+          </figure>
+        </div>
+          <figure class="plate sync-wide">
+            <div class="hero-media"><video muted playsinline preload="auto" poster="assets/amr3d-level4-slice-poster.jpg" aria-label="Two-dimensional slice of the 3D calculation at AMR level 4, colored by volume fraction"><source src="assets/amr3d-level4-slice.mp4" type="video/mp4"><source src="assets/amr3d-level4-slice.webm" type="video/webm"></video></div>
+            <figcaption><span>AMR level 4 · 2D slice of the 3D calculation · volume fraction</span></figcaption>
+          </figure>
+        </div>
+        <div class="amr3d-facts">
+          <div class="facts-col">
+            <table class="amr">
+              <caption>AMR mesh · Q2Q1 elements</caption>
+              <thead><tr><th scope="col">Level</th><th scope="col">Elements (x × y × z)</th><th scope="col">Kinematic DOFs</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">0 (base)</th><td>20 × 4 × 4</td><td>≈ 7.7 thousand</td></tr>
+                <tr><th scope="row">3</th><td>160 × 32 × 32</td><td>≈ 3.93 million</td></tr>
+                <tr><th scope="row">4</th><td>320 × 64 × 64</td><td>≈ 31.5 million</td></tr>
+                <tr><th scope="row">5</th><td>640 × 128 × 128</td><td>≈ 252 million</td></tr>
+              </tbody>
+            </table>
+            <p class="fact-note">These are high-order finite element (FEM) calculations, so the mesh is counted in elements. In Q2Q1 the velocity and the mesh are continuous quadratic (Q2) elements, which gives about two kinematic nodes per element in each direction, and the internal energy is discontinuous linear (Q1). Kinematic DOFs are the degrees of freedom of the velocity, counting every component. They are counted on a uniform mesh at each level, and adaptive refinement refines only part of the domain, so a run has fewer.</p>
+          </div>
+          <dl class="prov">
+            <div><dt>Code</dt><dd class="dd-refs"><a href="https://computing.llnl.gov/projects/mapp">MARBL</a>, an arbitrary Lagrangian–Eulerian (ALE) code, based on the high-order finite element methods of <a href="#ref-dobrev-2012">Dobrev et al. (2012)</a>, <a href="#ref-anderson-2018">Anderson et al. (2018)</a> and <a href="#ref-anderson-2015">Anderson et al. (2015)</a>, with more detail in the <a href="#ref-mapp">MAPP report</a></dd></div>
+            <div><dt>Release</dt><dd>The movies are from a presentation authorized for public release. LLNL release number: <span class="release-num"></span></dd></div>
+          </dl>
+        </div>
+      </article>
+    <section class="refs" id="code-refs" aria-labelledby="h-refs">
+        <p class="label" id="h-refs">References for the calculations</p>
+        <ol>
+          <li id="ref-dobrev-2012">V. A. Dobrev, Tz. V. Kolev, R. N. Rieben. <cite>High-order curvilinear finite element methods for Lagrangian hydrodynamics.</cite> SIAM Journal on Scientific Computing 34(5), B606–B641, 2012. <a href="https://doi.org/10.1137/120864672">doi:10.1137/120864672</a></li>
+          <li id="ref-anderson-2018">R. W. Anderson, V. A. Dobrev, Tz. V. Kolev, R. N. Rieben, V. Z. Tomov. <cite>High-order multi-material ALE hydrodynamics.</cite> SIAM Journal on Scientific Computing 40(1), B32–B58, 2018. <a href="https://doi.org/10.1137/17M1116453">doi:10.1137/17M1116453</a></li>
+          <li id="ref-anderson-2015">R. W. Anderson, V. A. Dobrev, Tz. V. Kolev, R. N. Rieben. <cite>Monotonicity in high-order curvilinear finite element arbitrary Lagrangian–Eulerian remap.</cite> International Journal for Numerical Methods in Fluids 77, 249–273, 2015. <a href="https://doi.org/10.1002/fld.3965">doi:10.1002/fld.3965</a></li>
+          <li id="ref-mapp"><cite>The Multiphysics on Advanced Platforms Project.</cite> Lawrence Livermore National Laboratory report. <a href="https://www.researchgate.net/publication/357392606_The_Multiphysics_on_Advanced_Platforms_Project">ResearchGate</a></li>
+        </ol>
+      </section>
+    <nav class="more" aria-label="Other simulations">
+      <p class="label">More simulations</p>
+      <ul>
+        <li><a href="richtmyer-meshkov-single-shock.html"><span class="t">Richtmyer–Meshkov instability with a single shock</span><span class="d">One shock crossing a perturbed interface, in 2D and 3D, and where the vorticity comes from.</span></a></li>
+        <li><a href="richtmyer-meshkov-2d.html"><span class="t">Richtmyer–Meshkov instability with reshock</span><span class="d">A shock, a rippled interface, and a second shock, with and without the adaptive mesh.</span></a></li>
+        <li><a href="taylor-green.html"><span class="t">Taylor–Green vortex</span><span class="d">Smooth vortices that stretch into turbulence, at low Mach number.</span></a></li>
+        <li><a href="taylor-green-supersonic.html"><span class="t">Supersonic Taylor–Green vortex</span><span class="d">The same flow at Mach 1.25 and 3.0, where shocks form.</span></a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer class="foot">
+    <span>Last updated October 2026</span>
+  </footer>
+</div>
+<script src="site.js"></script>
+</body>
+</html>
